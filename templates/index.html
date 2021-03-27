@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Stats</title>
+    <link rel = "icon" href="../static/favicon.png" type = "image/x-icon"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="heading1">&lt;Spotify<span style="color: #1ed760;">Stats</span>&gt;</h1>
+    
+    {% if not auth %}
+        <a style="position: absolute; right: 5rem; margin-top: 5rem;padding: 1.1rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1.6rem;text-decoration: none;" href="/verify"> <i style="color: #000;" class="fa fa-spotify"></i> Login</a>
+    {% else %}
+        <a style="position: absolute; right: 5rem; margin-top: 5rem;padding: 1.1rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1.6rem;text-decoration: none;" href="/logout"> <i style="color: #000;" class="fa fa-spotify"></i> Logout</a>
+    {% endif %}
+
+    
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <h5 style="margin-bottom: 3rem;padding: 1.1rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1rem;text-decoration: none;">{{ message }}</h5>
+        {% endfor %}
+        {% endwith %}
+        <div class="sub">
+            <div class="top" style="background-image: url('../static/songs.jpg');">
+                <h2 style="position: absolute; left: -1.2em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Favourite Songs</h2>
+            </div>
+            <div class="desc" style="background-color: #fff;opacity: 0.5;">
+                <p style="font-size: 1.5rem;">
+                    See the songs you love to listen! Your favorite songs of all time!
+                </p>
+            </div>
+        </div>
+
+        <div class="sub">
+            <div class="desc" style="background-color: #fff;opacity: 0.5;">
+                <p style="font-size: 1.5rem;">
+                    See the artists you've been jamming to everyday to make your day better! Your favorite artists of all time!
+                </p>
+            </div>
+            <div class="top">
+                <h2 style="position: absolute; right: -1.2em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Favourite Artists</h2>
+            </div>
+        </div>
+
+        <div class="sub">
+            <div class="top" style="background-image: url('../static/genre.jpg');">
+                <h2 style="position: absolute; left: -1.2em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Top Genres</h2>
+            </div>
+            <div class="desc" style="background-color: #fff;opacity: 0.5;">
+                <p style="font-size: 1.5rem;">
+                    Rock? EDM? Pop? See your favorite genres of all time!
+                </p>
+            </div>
+        </div>
+
+        <div class="sub">
+            <div class="desc" style="background-color: #fff;opacity: 0.5;">
+                <p style="font-size: 1.5rem;">
+                    See and discover similar artists to the ones you like and discover new songs on the basis of your taste!
+                </p>
+            </div>
+            <div class="top" style="background-image: url('../static/recommend.png');">
+                <h2 style="position: absolute; margin-top:15px; right: -2.2em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Recommendations</h2>
+            </div>
+        </div>
+
+        <div class="sub">
+            <div class="top" style="background-image: url('../static/seee.png');">
+                <h2 style="position: absolute; left: -2.5em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Visual Representaion</h2>
+            </div>
+            <div class="desc" style="background-color: #fff;opacity: 0.5;">
+                <p style="font-size: 1.5rem;">
+                    Visualize your music taste with cool graphs!
+                </p>
+            </div>
+        </div>
+    </div>
+    {% if not auth %}
+        <a style="position: absolute; left: 50%;margin-top: 150rem;padding: 1.1rem; border-radius: 35px;background-color: #000;color: #1ed760;font-size: 1.6rem;text-decoration: none;" href="/verify"> <i style="color: #1ed760;" class="fa fa-spotify"></i> Login</a>
+    {% else %}
+        <a style="position: absolute; left: 50%;margin-top: 150rem;padding: 1.1rem; border-radius: 35px;background-color: #000;color: #1ed760;font-size: 1.6rem;text-decoration: none; transform: translateX(-50%)" href="/info"> Go to your info page! </a>
+    {% endif %}
+    <h1 class="heading2" style="margin-top: 157rem;font-size: 5rem;"> TEAM <span style="color: #fff;">CLUELESS</span></h1>
+    <h1 class="heading2" style="margin-top: 163rem;font-size: 2rem;"> Sanchit <span style="color: #fff;">Jain</span></h1>
+    <h1 class="heading2" style="margin-top: 166rem;font-size: 2rem;"> Arnav <span style="color: #fff;">Sharma</span></h1>
+    <h1 class="heading2" style="margin-top: 177rem;"> <&#47;Spotify<span style="color: #fff;">Stats</span>> </h1>
+    <section class="main"></section>
+    <section class="main2"></section>
+    <section class="main"></section>
+    <section class="main2"></section>
+    <h1 class="mobile">Sorry We don't support Mobile Screens as of now</h1>
+</body>
+</html>

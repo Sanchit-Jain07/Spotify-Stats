@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spotify Stats-Info</title>
+    <link rel = "icon" href="../static/favicon.png" type = "image/x-icon"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>    
+    <header>
+        <div class="users">
+            <div class="photo">
+                {% if user['image'] %}
+                    <img class="image" src="{{ user['image'][0]['url'] }}"></img>
+                {% else %}
+                    <div class="image"></div>
+                {% endif %}
+            </div>
+            <div class="name">
+                <h3>{{ user['name'] }}</h3>
+                <h4>Followers - {{ user['followers'] }}</h4>
+                <a style="margin-top: 5rem;padding: 0.31rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1rem;text-decoration: none;" href="/logout"> <i style="color: #000;" class="fa fa-spotify"></i>Logout</a>
+            </div>
+        </div>
+    </header>
+    <section class="songs">
+        <div class="title">
+            <h2 class="topic">Here are your Top 10 Songs</h2>
+            <h1>Songs</h1>
+            <a class="playlist-create" href="{{ url_for('create') }}">Create a playlist out of your top songs!</a>
+        </div>
+        <div class="songlist">
+            {% for song in songs['songs'] %}
+            <div class="song">
+                <div class="photo">
+                    <img src="{{ song['images'] }}" alt="{{ song['name'] }}" class="image">
+                </div>
+                <div class="name">
+                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ song['url'] }}""><h3>{{ song['name'] }}</h3></a>
+                    <h4>By {{ song['artists'] }}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="artists">
+        <div class="artistlist">
+            {% for artist in artists['artists'] %}
+            <div class="artist">
+                <div class="name">
+                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ artist['url'] }}""><h3>{{ artist['name'] }}</h3></a>
+                    <h4>Followers - {{ artist['followers'] }}</h4>
+                </div>
+                <div class="photo">
+                    <img src="{{ artist['images'] }}" alt="{{ artist['name'] }}" class="image">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="title title2">
+            <h2>Here are your Top 10 Artists</h2>
+            <h1>Artists</h1>
+        </div>
+    </section>
+
+    <section class="genres">
+        <div class="title title3">
+            <h2 class="topic">Here are your Top 5 Genres</h2>
+            <h1>Genres</h1>
+        </div>
+        <div class="genrelist">
+            {% for genre in artists['genres'] %}
+            <div class="genre">
+                <div class="name">
+                    <h3>{{ genre }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="artists">
+        <div class="artistlist">
+            {% for artist in similar %}
+            <div class="artist">
+                <div class="name">
+                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ artist['url'] }}""><h3>{{ artist['name'] }}</h3></a>
+                    <h4>Followers - {{ artist['followers'] }}</h4>
+                </div>
+                <div class="photo">
+                    <img src="{{ artist['images'] }}" alt="{{ artist['name'] }}" class="image">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="title title4">
+            <h2 class="topic">Similar Artists to {{ artists['artists'][0]['name'] }}</h2>
+            <h1>Artists</h1>
+        </div>
+    </section>
+
+    <section class="songs">
+        <div class="title title5">
+            <h2 class="topic">Recommended Songs For You!</h2>
+            <h1>Songs</h1>
+        </div>
+        <div class="songlist">
+            {% for song in tracks %}
+            <div class="song">
+                <div class="photo">
+                    <img src="{{ song['images'] }}" alt="{{ song['name'] }}" class="image">
+                </div>
+                <div class="name">
+                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ song['url'] }}""><h3>{{ song['name'] }}</h3></a>
+                    <h4>By {{ song['artists'] }}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <div class="attributes">
+        <h2>Your Top Song Attributes</h2>
+    </div>
+    <section class="radar">
+        <div id="chart"></div>
+        <div class="legend">
+            <ul>
+                <li>Acousticness - A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0
+                    represents high confidence the track is acoustic.</li>
+                <li>Danceability - Danceability describes how suitable a track is for dancing based on a combination
+                    of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A
+                    value of 0.0 is least danceable and 1.0 is most danceable.</li>
+                <li>Energy - Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity
+                    and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal
+                    has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing
+                    to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general
+                    entropy.</li>
+                <li>Instrumentalness - Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are
+                    treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The
+                    closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal
+                    content. Values above 0.5 are intended to represent instrumental tracks, but confidence is
+                    higher as the value approaches 1.0.</li>
+                <li>Liveness - Detects the presence of an audience in the recording. Higher liveness values
+                    represent an increased probability that the track was performed live. A value above 0.8 provides
+                    strong likelihood that the track is live.</li>
+                <li>Speechiness - Speechiness detects the presence of spoken words in a track. The more exclusively
+                    speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute
+                    value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values
+                    between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections
+                    or layered, including such cases as rap music. Values below 0.33 most likely represent music and
+                    other non-speech-like tracks.</li>
+                <li>Valence - A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track.
+                    Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with
+                    low valence sound more negative (e.g. sad, depressed, angry).</li>
+            </ul>
+        </div>
+    </section>
+    <!-- <div id="chart"></div> -->
+
+    <div class="heading">
+        <h3>Some more Stats</h3>
+        <small>Calculated using the data from your all time top songs.</small>
+    </div>
+
+    <section class="tempo">
+        <div id="tempochart"></div>
+        <div id="timechart"></div>
+    </section>
+    
+    <section class="artist-songs">
+        <div id="songchart"></div>
+    </section>
+    <a style="position:absolute;margin-left:45vw;margin-top: 5rem;padding: 1.31rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1.6rem;text-decoration: none;" href="/logout"> <i style="color: #000;" class="fa fa-spotify"></i>Logout</a>
+    <footer>
+        <h1>Thank You for visiting!</h1>
+        <small>This website was made as a submission for Timathon</small>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"
+        integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg=="
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        const { attributes, values, tempo, duration} = {{ audio|tojson}}
+        
+        const controller = new ScrollMagic.Controller()
+
+        radar_options = radarChart(attributes, values)
+        const radat_chart = new ApexCharts(document.querySelector("#chart"), radar_options);
+        const radar_chart_div = document.getElementById('chart')
+        radat_chart.render()
+        new ScrollMagic.Scene({
+            duration: 0,
+            triggerElement: '#chart',
+            triggerHook: 0.5
+        })
+        .addTo(controller)
+        .on('enter leave', (e) => {
+            if (e.type == 'enter') {
+                radar_chart_div.style.opacity = 1
+                radat_chart.updateOptions(radar_options, true, true)
+            } else {
+                radar_chart_div.style.opacity = 0
+            }
+        })
+
+        tempo_options = tempoChart(tempo)
+        const tempo_chart = new ApexCharts(document.querySelector("#tempochart"), tempo_options);
+        const tempo_chart_div = document.getElementById('tempochart')
+        tempo_chart.render()
+        new ScrollMagic.Scene({
+            duration: 0,
+            triggerElement: '#tempochart',
+            triggerHook: 0.7
+        })
+        .addTo(controller)
+        .on('enter leave', (e) => {
+            if (e.type == 'enter') {
+                tempo_chart_div.style.opacity = 1
+                tempo_chart.updateOptions(tempo_options, true, true)
+            } else {
+                tempo_chart_div.style.opacity = 0
+            }
+        })
+
+        time_options = timeChart(duration)
+        const time_chart = new ApexCharts(document.querySelector("#timechart"), time_options);
+        const time_chart_div = document.getElementById('timechart')
+        time_chart.render()
+        new ScrollMagic.Scene({
+            duration: 0,
+            triggerElement: '#timechart',
+            triggerHook: 0.7
+        })
+        .addTo(controller)
+        .on('enter leave', (e) => {
+            if (e.type == 'enter') {
+                time_chart_div.style.opacity = 1
+                time_chart.updateOptions(time_options, true, true)
+            } else {
+                time_chart_div.style.opacity = 0
+            }
+        })
+
+        artist_options = songArtist({{songs['all_artists']|tojson}},{{songs['uri']|tojson}})
+        const artist_chart = new ApexCharts(document.querySelector("#songchart"), artist_options);
+        const song_chart_div = document.getElementById('songchart')
+        artist_chart.render()
+        new ScrollMagic.Scene({
+            duration: 0,
+            triggerElement: '#songchart',
+            triggerHook: 1
+        })
+        .addTo(controller)
+        .on('enter leave', (e) => {
+            if (e.type == 'enter') {
+                song_chart_div.style.opacity = 1
+                artist_chart.updateOptions(artist_options, true, true)
+            } else {
+                song_chart_div.style.opacity = 0
+            }
+        })
+
+    </script>
+</body>
+
+</html>

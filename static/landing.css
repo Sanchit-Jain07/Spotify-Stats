@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap');
+
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Playfair Display', serif; */
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.heading1{
+    position: absolute;
+    color: #fff;
+    margin: 5rem;
+    font-size: 5rem;
+    font-weight: 900;
+}
+
+.heading2{
+    position: absolute;
+    color: #000;
+    margin-top: 163rem;
+    margin-left: 5rem;
+    font-size: 5rem;
+    font-weight: 900;
+}
+
+.main{
+    width: 100vw;
+    height: 120vh;
+    background: linear-gradient(#000 30%,#1ed760 100%);
+}
+.main2{
+    width: 100vw;
+    height: 120vh;
+    background: linear-gradient(#1ed760 0%, #000 70%);
+}
+.container{
+    position: absolute;
+    margin-top: 30vw;
+    margin-left: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    /* background-color: red; */
+}
+
+.sub{
+    width: 50rem;
+    height: 20rem;
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.top{
+    width: 20rem;
+    height: 20rem;
+    /* background-color: violet; */
+    background-image: url('../static/artists.jpg');
+    background-size: cover;
+}
+
+.desc{
+    width: 20rem;
+    height: 20rem;
+}
+
+.desc p{
+    margin: 2rem;
+}
+
+.mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    body * {
+        display: none
+    }
+    .mobile {
+        display: block;
+    }
+}
