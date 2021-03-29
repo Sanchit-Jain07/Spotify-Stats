@@ -1,7 +1,7 @@
-# Spotify Stats
+# Spotify Stats :bar_chart:
 
 Spotify Stats is a website where one can analyze their spotify account stats by getting their Top Songs, Favourite Artists, Top Genres, Recommendations, and visual representation of the above.
-[Visit](https://statsspotify.herokuapp.com/) :rocket:
+Visit - [Spotify Stats](https://statsspotify.herokuapp.com/) :rocket:
 
 ## Features
 * **Favourite Songs**  - See the songs you love to listen! Your favorite songs of all time!
@@ -15,6 +15,6 @@ Spotify Stats is a website where one can analyze their spotify account stats by 
 * **Visual Representaion** - Visualize your music taste with cool graphs!
 
 
-## Contributers
+## Contributors
 * [Sanchit-Jain07](https://github.com/Sanchit-Jain07)
 * [Arnav17Sharma](https://github.com/Arnav17Sharma)
