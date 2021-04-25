@@ -63,7 +63,7 @@ def get_all_top_artists(sp):
             artist = {
                     'name': item['name'], 
                     'followers': item['followers']['total'], 
-                    'images': item['images'][0]['url'] if items['images'] else 'https://static.thenounproject.com/png/750603-200.png', 
+                    'images': item['images'][0]['url'] if item['images'] else 'https://static.thenounproject.com/png/750603-200.png', 
                     'url': item['external_urls']['spotify']
                     }
 
