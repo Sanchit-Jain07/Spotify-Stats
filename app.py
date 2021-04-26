@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, url_for, request, session, flash, jsonify
+from flask import Flask, redirect, render_template, url_for, request, session, flash, jsonify, abort
 import spotipy
 import os
 import time
@@ -9,6 +9,10 @@ app = Flask(__name__)
 app.secret_key = 'secretverysecret'
 
 SCOPE = 'user-top-read user-read-private playlist-modify-public'
+
+@app.errorhandler(500)
+def internal_error(e):
+    return '<h1>Sorry Something went wrong, data from your account cannot be extracted.</h1>', 500
 
 @app.before_request
 def before_request():
@@ -84,6 +88,11 @@ def logout():
     session.pop('token_info')
     flash('You have successfully Logged Out!')
     return redirect('/')
+
+@app.route('/temp')
+def temp():
+    abort(500)
+    return 'hello'
 
 # Checks to see if token is valid and gets a new token if not
 def get_token(session):
