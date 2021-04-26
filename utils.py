@@ -100,11 +100,14 @@ def get_audio_features(sp, songs):
              'danceability', 'valence', 'duration_ms']
 
     for features in audio_features:
-        features_list.append([features['energy'], features['liveness'],
-                              features['tempo'], features['speechiness'],
-                              features['acousticness'], features['instrumentalness'],
-                              features['danceability'], features['valence'], features['duration_ms']]
-                            )
+        try:
+            features_list.append([features['energy'], features['liveness'],
+                                  features['tempo'], features['speechiness'],
+                                  features['acousticness'], features['instrumentalness'],
+                                  features['danceability'], features['valence'], features['duration_ms']]
+                                )
+        except:
+            pass
 
     data = pd.DataFrame(features_list, columns=columns)
     tempo = [data['tempo'].max(), data['tempo'].mean(axis=0), data['tempo'].min()]
