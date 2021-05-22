@@ -9,6 +9,20 @@
     <link rel = "icon" href="../static/favicon.png" type = "image/x-icon"> 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script type="text/javascript">
+        wInitial = window.innerWidth
+        window.addEventListener('resize', () => {
+            // if (window.innerWidth < 768 && wInitial > 768) {
+            //     location.reload()
+            //     console.log(window.innerWidth, wInitial)
+            // }
+            // if (window.innerWidth > 768 && wInitial < 768) {
+            //     location.reload()
+            //     console.log(window.innerWidth, wInitial)
+            // }
+            location.reload()
+        })
+    </script>
 </head>
 
 <body>    
@@ -41,7 +55,7 @@
                     <img src="{{ song['images'] }}" alt="{{ song['name'] }}" class="image">
                 </div>
                 <div class="name">
-                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ song['url'] }}""><h3>{{ song['name'] }}</h3></a>
+                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ song['url'] }}"><h3>{{ song['name'] }}</h3></a>
                     <h4>By {{ song['artists'] }}</h4>
                 </div>
             </div>
@@ -54,7 +68,7 @@
             {% for artist in artists['artists'] %}
             <div class="artist">
                 <div class="name">
-                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ artist['url'] }}""><h3>{{ artist['name'] }}</h3></a>
+                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ artist['url'] }}"><h3>{{ artist['name'] }}</h3></a>
                     <h4>Followers - {{ artist['followers'] }}</h4>
                 </div>
                 <div class="photo">
@@ -66,6 +80,19 @@
         <div class="title title2">
             <h2>Here are your Top 10 Artists</h2>
             <h1>Artists</h1>
+        </div>
+        <div class="artistlist  artistlist-mobile">
+            {% for artist in artists['artists'] %}
+            <div class="artist">
+                <div class="name">
+                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ artist['url'] }}"><h3>{{ artist['name'] }}</h3></a>
+                    <h4>Followers - {{ artist['followers'] }}</h4>
+                </div>
+                <div class="photo">
+                    <img src="{{ artist['images'] }}" alt="{{ artist['name'] }}" class="image">
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </section>
 
@@ -102,6 +129,19 @@
         <div class="title title4">
             <h2 class="topic">Similar Artists to {{ artists['artists'][0]['name'] }}</h2>
             <h1>Artists</h1>
+        </div>
+        <div class="artistlist artistlist-mobile">
+            {% for artist in similar %}
+            <div class="artist">
+                <div class="name">
+                    <a target="_blank" style="text-decoration: none;color: #fff;" href="{{ artist['url'] }}""><h3>{{ artist['name'] }}</h3></a>
+                    <h4>Followers - {{ artist['followers'] }}</h4>
+                </div>
+                <div class="photo">
+                    <img src="{{ artist['images'] }}" alt="{{ artist['name'] }}" class="image">
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </section>
 
