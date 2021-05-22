@@ -7,22 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Spotify Stats-Info</title>
     <link rel = "icon" href="../static/favicon.png" type = "image/x-icon"> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <script type="text/javascript">
-        wInitial = window.innerWidth
-        window.addEventListener('resize', () => {
-            // if (window.innerWidth < 768 && wInitial > 768) {
-            //     location.reload()
-            //     console.log(window.innerWidth, wInitial)
-            // }
-            // if (window.innerWidth > 768 && wInitial < 768) {
-            //     location.reload()
-            //     console.log(window.innerWidth, wInitial)
-            // }
-            // location.reload()
-        })
-    </script>
 </head>
 
 <body>    
@@ -39,6 +25,7 @@
                 <h3>{{ user['name'] }}</h3>
                 <h4>Followers - {{ user['followers'] }}</h4>
                 <a style="margin-top: 5rem;padding: 0.31rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1rem;text-decoration: none;" href="/logout"> <i style="color: #000;" class="fa fa-spotify"></i>Logout</a>
+                <a style="margin-top: 5rem;padding: 0.31rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1rem;text-decoration: none;" href="{{ url_for('share') }}"> <i style="color: #000;" class="fa fa-share-alt" aria-hidden="true"></i>Share your stats</a>
             </div>
         </div>
     </header>
@@ -217,7 +204,10 @@
     <section class="artist-songs">
         <div id="songchart"></div>
     </section>
-    <a style="position:absolute;margin-left:45vw;margin-top: 5rem;padding: 1.31rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1.6rem;text-decoration: none;" href="/logout"> <i style="color: #000;" class="fa fa-spotify"></i>Logout</a>
+    <div class="down">
+        <a class="down1" href="/logout"> <i style="color: #000;" class="fa fa-spotify"></i>Logout</a>
+        <a class="down2" href="{{ url_for('share') }}"> <i style="color: #000;" class="fa fa-share-alt" aria-hidden="true"></i>Share your stats</a>
+    </div>
     <footer>
         <h1>Thank You for visiting!</h1>
         <small>This website was made as a submission for Timathon</small>
@@ -226,7 +216,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"
         integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg=="
         crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='script2.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script>
         const { attributes, values, tempo, duration} = {{ audio|tojson}}
         
