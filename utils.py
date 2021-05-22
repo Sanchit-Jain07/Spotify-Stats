@@ -1,6 +1,11 @@
 import pandas as pd
 from collections import Counter
 import json
+from PIL import Image, ImageDraw, ImageFont
+import requests
+from io import BytesIO
+from flask import send_file
+font = ImageFont.truetype('static/Montserrat-Black.ttf', 55)
 
 def get_all_top_tracks(sp):
     data = {'songs': [], 'uri': [], 'artists': []}
@@ -183,3 +188,47 @@ def create_playlist(sp,songs,uid):
     tracks_add = sp.user_playlist_add_tracks(uid, playlist_id, songs)
     playlist_image = sp.playlist_cover_image(playlist_id)[0]['url']
     return {'name': playlist['name'], 'id': playlist_id, 'url': playlist['external_urls']['spotify'], 'image': playlist_image}
+
+def create_image(songs, artists, username):
+    artists_list = []
+    songs_list = []
+    for i in artists:
+        response = requests.get(i)
+        img = Image.open(BytesIO(response.content))
+        artists_list.append(img)
+    for i in songs:
+        response = requests.get(i)
+        img = Image.open(BytesIO(response.content))
+        songs_list.append(img)
+    bg = Image.open('static/template.png')
+
+    d = ImageDraw.Draw(bg)
+    d.text((33,26), username, font=font, fill=(255,255,255))
+
+    artists_list[0] = artists_list[0].resize((550,550))
+    artists_list[1] = artists_list[1].resize((337,337))
+    artists_list[2] = artists_list[2].resize((213,213))
+    artists_list[3] = artists_list[3].resize((213,213))
+
+    bg.paste(artists_list[0], (0, 156))
+    bg.paste(artists_list[1], (550, 156))
+    bg.paste(artists_list[2], (550, 493))
+    bg.paste(artists_list[3], (763, 493))
+
+    songs_list[0] = songs_list[0].resize((550,550))
+    songs_list[1] = songs_list[1].resize((337,337))
+    songs_list[2] = songs_list[2].resize((213,213))
+    songs_list[3] = songs_list[3].resize((213,213))
+
+    bg.paste(songs_list[0], (474, 706))
+    bg.paste(songs_list[1], (137, 707))
+    bg.paste(songs_list[2], (261, 1045))
+    bg.paste(songs_list[3], (48, 1043))
+
+    return bg
+
+def serve_image(img):
+    img_io = BytesIO()
+    img.save(img_io, 'PNG')
+    img_io.seek(0)
+    return send_file(img_io, mimetype='image/png', as_attachment=True, attachment_filename='SpotifyStats.png')
