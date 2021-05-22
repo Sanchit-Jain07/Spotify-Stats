@@ -254,6 +254,30 @@ footer {
     text-decoration: none;
 }
 
+.down1 {
+    position:absolute;
+    margin-left:65vw;
+    margin-top: 5rem;
+    padding: 1.31rem;
+    border-radius: 35px;
+    background-color: #1ed760;
+    color: #000;
+    font-size: 1.6rem;
+    text-decoration: none;
+}
+
+.down2 {
+    position:absolute;
+    margin-left:25vw;
+    margin-top: 5rem;
+    padding: 1.31rem;
+    border-radius: 35px;
+    background-color: #1ed760;
+    color: #000;
+    font-size: 1.6rem;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 768px) {
     body {
         overflow-x: hidden;
@@ -489,6 +513,15 @@ footer {
         color: #000;
         font-size: 1.6rem;
         text-decoration: none;
+    }
+    .down1 , .down2{
+        font-size: 15px;
+    }
+    .down1 {
+        margin-left: 10vw;
+    }
+    .down2 {
+        margin-left: 45vw;
     }
 
 }
