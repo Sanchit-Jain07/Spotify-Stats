@@ -10,6 +10,7 @@ spotipy = "*"
 pandas = "*"
 flask = "*"
 gunicorn = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
