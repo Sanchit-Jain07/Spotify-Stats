@@ -11,88 +11,87 @@
 </head>
 <body>
     <h1 class="heading1">&lt;Spotify<span style="color: #1ed760;">Stats</span>&gt;</h1>
-    
-    {% if not auth %}
-        <a style="position: absolute; right: 5rem; margin-top: 5rem;padding: 1.1rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1.6rem;text-decoration: none;" href="/verify"> <i style="color: #000;" class="fa fa-spotify"></i> Login</a>
-    {% else %}
-        <a style="position: absolute; right: 5rem; margin-top: 5rem;padding: 1.1rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1.6rem;text-decoration: none;" href="/logout"> <i style="color: #000;" class="fa fa-spotify"></i> Logout</a>
-    {% endif %}
 
+    {% if not auth %}
+        <a class ="login-btn" href="/verify"> <i style="color: #000;" class="fa fa-spotify"></i> Login</a>
+    {% else %}
+        <a class ="login-btn" href="/logout"> <i style="color: #000;" class="fa fa-spotify"></i> Logout</a>
+    {% endif %}
     
+
     <div class="container">
+
         {% with messages = get_flashed_messages() %}
         {% for message in messages %}
         <h5 style="margin-bottom: 3rem;padding: 1.1rem; border-radius: 35px;background-color: #1ed760;color: #000;font-size: 1rem;text-decoration: none;">{{ message }}</h5>
         {% endfor %}
         {% endwith %}
-        <div class="sub">
-            <div class="top" style="background-image: url('../static/songs.jpg');">
-                <h2 style="position: absolute; left: -1.2em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Favourite Songs</h2>
+
+        <section class="sub">
+            <div style="background-image: url('../static/songs.jpg');" class="top">
+                <h2 style="position: absolute; left: -1.2em; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Favourite Songs</h2>
             </div>
-            <div class="desc" style="background-color: #fff;opacity: 0.5;">
-                <p style="font-size: 1.5rem;">
+            <div class="desc"><p class="sub-text">
                     See the songs you love to listen! Your favorite songs of all time!
                 </p>
             </div>
-        </div>
+        </section>
 
-        <div class="sub">
-            <div class="desc" style="background-color: #fff;opacity: 0.5;">
-                <p style="font-size: 1.5rem;">
+        <section class="sub">
+            <div class="desc"><p class="sub-text">
                     See the artists you've been jamming to everyday to make your day better! Your favorite artists of all time!
                 </p>
             </div>
-            <div class="top">
-                <h2 style="position: absolute; right: -1.2em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Favourite Artists</h2>
+            <div style="background-image: url('../static/artists.jpg');" class="top top-artist">
+                <h2 style="position: absolute; right: -1.2em; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Favourite Artists</h2>
             </div>
-        </div>
+        </section>
 
-        <div class="sub">
-            <div class="top" style="background-image: url('../static/genre.jpg');">
-                <h2 style="position: absolute; left: -1.2em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Top Genres</h2>
+        <section class="sub">
+            <div style="background-image: url('../static/genre.jpg');" class="top">
+                <h2 style="position: absolute; left: -1.2em; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Top Genres</h2>
             </div>
-            <div class="desc" style="background-color: #fff;opacity: 0.5;">
-                <p style="font-size: 1.5rem;">
+            <div class="desc"><p class="sub-text">
                     Rock? EDM? Pop? See your favorite genres of all time!
                 </p>
             </div>
-        </div>
+        </section>
 
-        <div class="sub">
-            <div class="desc" style="background-color: #fff;opacity: 0.5;">
-                <p style="font-size: 1.5rem;">
+        <section class="sub">
+            <div class="desc"><p class="sub-text">
                     See and discover similar artists to the ones you like and discover new songs on the basis of your taste!
                 </p>
             </div>
-            <div class="top" style="background-image: url('../static/recommend.png');">
-                <h2 style="position: absolute; margin-top:15px; right: -2.2em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Recommendations</h2>
+            <div style="background-image: url('../static/recommend.png');" class="top">
+                <h2 style="position: absolute; margin-top:15px; right: -2.2em; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Recommendations</h2>
             </div>
-        </div>
+        </section>
 
-        <div class="sub">
-            <div class="top" style="background-image: url('../static/seee.png');">
-                <h2 style="position: absolute; left: -2.5em;font-size: 4rem; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Visual Representaion</h2>
+        <section class="sub">
+            <div style="background-image: url('../static/seee.png');" class="top">
+                <h2 style="position: absolute; left: -2.5em; letter-spacing: 1px; color: transparent;-webkit-text-stroke: 0.51px #fff;">Visual Representaion</h2>
             </div>
-            <div class="desc" style="background-color: #fff;opacity: 0.5;">
-                <p style="font-size: 1.5rem;">
+            <div class="desc"><p class="sub-text">
                     Visualize your music taste with cool graphs!
                 </p>
             </div>
-        </div>
+        </section>
     </div>
+
     {% if not auth %}
-        <a style="position: absolute; left: 50%;margin-top: 150rem;padding: 1.1rem; border-radius: 35px;background-color: #000;color: #1ed760;font-size: 1.6rem;text-decoration: none;" href="/verify"> <i style="color: #1ed760;" class="fa fa-spotify"></i> Login</a>
+        <a class="info-btn" href="/verify"> <i style="color: #1ed760;" class="fa fa-spotify"></i> Login</a>
     {% else %}
-        <a style="position: absolute; left: 50%;margin-top: 150rem;padding: 1.1rem; border-radius: 35px;background-color: #000;color: #1ed760;font-size: 1.6rem;text-decoration: none; transform: translateX(-50%)" href="/info"> Go to your info page! </a>
+        <a class="info-btn" href="/info"> Go to your info page! </a>
     {% endif %}
-    <h1 class="heading2" style="margin-top: 157rem;font-size: 5rem;"> TEAM <span style="color: #fff;">CLUELESS</span></h1>
-    <h1 class="heading2" style="margin-top: 163rem;font-size: 2rem;"> Sanchit <span style="color: #fff;">Jain</span></h1>
-    <h1 class="heading2" style="margin-top: 166rem;font-size: 2rem;"> Arnav <span style="color: #fff;">Sharma</span></h1>
-    <h1 class="heading2" style="margin-top: 177rem;"> <&#47;Spotify<span style="color: #fff;">Stats</span>> </h1>
-    <section class="main"></section>
-    <section class="main2"></section>
-    <section class="main"></section>
-    <section class="main2"></section>
-    <h1 class="mobile">Mobile Support is coming soon!</h1>
+
+
+    <h1 class="heading2"> TEAM <span style="color: #fff;">CLUELESS</span></h1>
+    <h1 class="heading3"> Sanchit <span style="color: #fff;">Jain</span></h1>
+    <h1 class="heading4"> Arnav <span style="color: #fff;">Sharma</span></h1>
+    <h1 class="heading5"> <&#47;Spotify<span style="color: #fff;">Stats</span>> </h1>
+    <div class="main"></div>
+    <div class="main2"></div>
+    <div class="main main3"></div>
+    <div class="main2 main4"></div>
 </body>
 </html>
