@@ -239,8 +239,256 @@ footer {
     width: 100vw;
 }
 
+.artistlist-mobile {
+    display: none;
+}
+.logout-btn {
+    position:absolute;
+    margin-left:45vw;
+    margin-top: 5rem;
+    padding: 1.31rem;
+    border-radius: 35px;
+    background-color: #1ed760;
+    color: #000;
+    font-size: 1.6rem;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 768px) {
     body {
+        overflow-x: hidden;
+    }
+    header {
+        height: 100vh;
+        width: 100vw;
+        background-color: #000000;
+        color: #fff;
+    }
+    header .users div {
+        margin: 15px;
+    }
+    .users {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 70px;
+        font-size: .2rem;
+    }
+    header .name {
+        font-size: 10px;
+    }
+    .songs,
+    .artists,
+    .genres {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+    .title {
+        color: #fff;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Montserrat', sans-serif;
+        flex-direction: column;
+        background: linear-gradient(#000000 0%, #1ed760 100%);
+        margin: 0 !important;
+    }
+    .title h1 {
+        font-size: 100px;
+        font-weight: bolder;
+        opacity: 0.4;
+    }
+    .songlist,
+    .genrelist {
+        color: #fff;
+        width: 100%;
+        background: linear-gradient(#1ed760 0%, #0f6c30 24%, #000000 100%);
+    }
+    .song,
+    .artist,
+    .genre {
+        display: flex;
+        font-family: 'Montserrat', sans-serif;
+        margin: 15px;
+        padding: 10px;
+        height: 25vh;
+    }
+    .song div,
+    .artist div{
+        margin: 0 10px 0 10px
+    }
+    .name h3 {
+        margin-bottom: 0%;
+        font-size: 19px;
+        text-align: center;
+    }
+
+    .name h4 {
+        /*display: none;*/
+        font-size: 15px;
+    }
+
+    .name {
+        width: 50vw;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /*background: red;*/
+    }
+    .photo {
+        width: 30vw;
+        /*background: yellow;*/
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .image {
+        background: gray;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+    .artistlist {
         display: none;
     }
+    .artistlist-mobile {
+        display: block;
+        color: #fff;
+        width: 100%;
+        background: linear-gradient(#1ed760 0%, #0f6c30 24%, #000000 100%);
+    }
+
+    .title h2 {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .title h1 {
+        font-size: 90px;
+        font-weight: bolder;
+        opacity: 0.4;
+    }
+    .genre {
+        /*background: red;*/
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .attributes {
+        background: #000;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .attributes h2 {
+        color: #fff;
+        font-size: 40px;
+        margin: 45px;
+        opacity: 0.4;
+        text-align: center;
+    }
+
+    .radar {
+        display: flex;
+        flex-direction: column;
+        /* height: 100vh; */
+        padding-right: 5%;
+        width: 100vw;
+        background: linear-gradient(#000000 0%, #1ed760 100%);
+        overflow: hidden;
+    }
+    #chart {
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 60px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    .legend { 
+        /*background: red;*/
+        /*display: none;*/
+        width: 100vw;
+        color: #fff;
+        font-size: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-right: 20px;
+    }
+    .heading {
+        font-size: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #1ed760;
+        color: #fff;
+        padding-bottom: 5%;
+        width: 100vw;
+        text-align: center;
+    }
+
+    .heading small {
+        font-size: 10px;
+    }
+    .tempo {
+        height: 140vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(#1ed760 0%, #000000 100%);
+        /*background: red;*/
+    }
+    #tempochart {
+        height: 50vh;
+        width: 100vw;
+        opacity: 0;
+        /*margin-left: 50px;*/
+        transition: opacity 0.5s ease;
+    }
+    #timechart {
+        height: 50vh;
+        width: 100vw;
+        margin-right: 5%;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    #songchart {
+        /*margin: 0 20%;*/
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    .artist-songs {
+        background: linear-gradient(#000000 0%, #1ed760 100%);
+        width: 100vw;
+    }
+
+    .logout-btn {
+        position:absolute;
+        margin-left:30vw;
+        margin-top: 5rem;
+        padding: 1.31rem;
+        border-radius: 35px;
+        background-color: #1ed760;
+        color: #000;
+        font-size: 1.6rem;
+        text-decoration: none;
+    }
+
 }
