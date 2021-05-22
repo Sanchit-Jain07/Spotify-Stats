@@ -14,7 +14,13 @@ Visit - [Spotify Stats](https://statsspotify.herokuapp.com/) :rocket:
 
 * **Visual Representaion** - Visualize your music taste with cool graphs!
 
+* **Share your stats** - Get your top 4 songs and artists as an image and share your stats with your friends!!
+
 
 ## Contributors
 * [Sanchit-Jain07](https://github.com/Sanchit-Jain07)
 * [Arnav17Sharma](https://github.com/Arnav17Sharma)
+
+## Share Stats Sample Image
+
+![Sample Stats Img](https://github.com/Sanchit-Jain07/Spotify-Stats/blob/master/static/Frame_6.png)
