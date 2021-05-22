@@ -3,7 +3,7 @@ import spotipy
 import os
 import time
 import json
-from utils import get_all_top_tracks, get_all_top_artists, get_audio_features, get_recommended_artists, get_recommendations, get_user, create_playlist
+from utils import get_all_top_tracks, get_all_top_artists, get_audio_features, get_recommended_artists, get_recommendations, get_user, create_playlist, create_image, serve_image
 
 app = Flask(__name__)
 app.secret_key = 'secretverysecret'
@@ -52,6 +52,11 @@ def info():
     audio_features = get_audio_features(sp, songs['uri'])
     recommended_artists = get_recommended_artists(sp, artists['artists'][0]['url'][32:])
     recommended_songs = get_recommendations(sp, artists, songs['uri'], artists['genres'][0], audio_features['values'])
+    
+    session['songs_5'] = [i['images'] for i in songs['songs'][:5]]
+    session['artists_5'] = [i['images'] for i in artists['artists'][:5]]
+    session['username'] = user['name']
+    
     return render_template('info.html', songs=songs, artists=artists, similar=recommended_artists, tracks=recommended_songs, audio=audio_features, user=user)
 
 @app.route('/')
@@ -76,6 +81,15 @@ def create():
     playlist = create_playlist(sp,songs['uri'],user['id'])
 
     return render_template('create.html', playlist=playlist)
+
+@app.route('/share')
+def share():
+    session['token_info'], authorized = get_token(session)
+    session.modified = True
+    if not authorized:
+        flash("Please Login with your Spotify Account")
+        return redirect('/')
+    return serve_image(create_image(songs=session['songs_5'], artists=session['artists_5'], username=session['username']))
 
 @app.route('/logout')
 def logout():
