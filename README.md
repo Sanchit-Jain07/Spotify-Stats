@@ -23,4 +23,4 @@ Visit - [Spotify Stats](https://statsspotify.herokuapp.com/) :rocket:
 
 ## Share Stats Sample Image
 
-![Sample Stats Img](https://github.com/Sanchit-Jain07/Spotify-Stats/blob/master/static/Frame_6.png)
+![Sample Stats Img](https://github.com/Sanchit-Jain07/Spotify-Stats/blob/master/static/Fixed_image.png)
