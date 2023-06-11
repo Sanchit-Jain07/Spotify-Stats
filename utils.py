@@ -19,11 +19,15 @@ def get_all_top_tracks(sp):
 
         for item in (results['items']):
             data['uri'].append(item['uri'])
+            if  ('images' in item and item['images']):
+                image = item['album']['images'][0]['url']
+            else:
+                image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
             song = {
                     'name': item['name'], 
                     'url': item['external_urls']['spotify'], 
                     'artists': ', '.join([i['name'] for i in item['album']['artists']]),
-                    'images': item['album']['images'][0]['url'] if ('images' in item and item['images']) else 'https://cdn-icons-png.flaticon.com/512/26/26805.png',
+                    'images': image
                     }
             all_artists.extend(i['name'] for i in item['album']['artists'])
             data['songs'].append(song)
@@ -65,10 +69,14 @@ def get_all_top_artists(sp):
             break
 
         for item in results['items']:
+            if  ('images' in item and item['images']):
+                image = item['album']['images'][0]['url']
+            else:
+                image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
             artist = {
                     'name': item['name'], 
                     'followers': item['followers']['total'], 
-                    'images': item['images'][0]['url'] if ('images' in item and item['images']) else 'https://static.thenounproject.com/png/750603-200.png', 
+                    'images': image, 
                     'url': item['external_urls']['spotify']
                     }
 
@@ -145,10 +153,14 @@ def get_recommended_artists(sp, id):
     artists = sp.artist_related_artists(id)
     data = []
     for artist in artists['artists'][:5]:
+        if  ('images' in artist and artist['images']):
+                image = artist['album']['images'][0]['url']
+            else:
+                image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
         temp = {
                 'name': artist['name'], 
                 'followers': artist['followers']['total'], 
-                'images': artist['images'][0]['url'], 
+                'images': image, 
                 'url': artist['external_urls']['spotify']
                 }
         data.append(temp)
@@ -171,13 +183,17 @@ def get_recommendations(sp, artists, songs, genre, audio_features):
     target_valence=audio_features[6],
     )
 
-    for i in data['tracks']:
+    for item in data['tracks']:
         artists = [j['name'] for j in i['artists']]
+        if  ('images' in item and item['images']):
+                image = item['album']['images'][0]['url']
+            else:
+                image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
         song_list.append({
-            'name': i['name'],
-            'url': i['external_urls']['spotify'],
+            'name': item['name'],
+            'url': item['external_urls']['spotify'],
             'artists': ', '.join(artists),
-            'images': i['album']['images'][0]['url'] if ('images' in i and i['images']) else 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
+            'images': image
         })
 
     return song_list[:5]
