@@ -70,7 +70,7 @@ def get_all_top_artists(sp):
 
         for item in results['items']:
             if  ('images' in item and item['images']):
-                image = item['album']['images'][0]['url']
+                image = item['images'][0]['url']
             else:
                 image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
             artist = {
@@ -154,7 +154,7 @@ def get_recommended_artists(sp, id):
     data = []
     for artist in artists['artists'][:5]:
         if  ('images' in artist and artist['images']):
-                image = artist['album']['images'][0]['url']
+                image = artist['images'][0]['url']
         else:
             image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
         temp = {
