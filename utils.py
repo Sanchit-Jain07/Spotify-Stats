@@ -23,7 +23,7 @@ def get_all_top_tracks(sp):
                     'name': item['name'], 
                     'url': item['external_urls']['spotify'], 
                     'artists': ', '.join([i['name'] for i in item['album']['artists']]),
-                    'images': item['album']['images'][0]['url'],
+                    'images': item['album']['images'][0]['url'] if item['images'] else 'https://cdn-icons-png.flaticon.com/512/26/26805.png',
                     }
             all_artists.extend(i['name'] for i in item['album']['artists'])
             data['songs'].append(song)
@@ -177,7 +177,7 @@ def get_recommendations(sp, artists, songs, genre, audio_features):
             'name': i['name'],
             'url': i['external_urls']['spotify'],
             'artists': ', '.join(artists),
-            'images': i['album']['images'][0]['url']
+            'images': i['album']['images'][0]['url'] if i['images'] else 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
         })
 
     return song_list[:5]
