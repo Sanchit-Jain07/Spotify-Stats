@@ -184,7 +184,7 @@ def get_recommendations(sp, artists, songs, genre, audio_features):
     )
 
     for item in data['tracks']:
-        artists = [j['name'] for j in i['artists']]
+        artists = [j['name'] for j in item['artists']]
         if  ('images' in item and item['images']):
                 image = item['album']['images'][0]['url']
         else:
