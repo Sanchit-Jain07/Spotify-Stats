@@ -187,8 +187,8 @@ def get_recommendations(sp, artists, songs, genre, audio_features):
         artists = [j['name'] for j in i['artists']]
         if  ('images' in item and item['images']):
                 image = item['album']['images'][0]['url']
-            else:
-                image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
+        else:
+            image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
         song_list.append({
             'name': item['name'],
             'url': item['external_urls']['spotify'],
