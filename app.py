@@ -131,5 +131,6 @@ def get_token(session):
     token_valid = True
     return token_info, token_valid
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     app.run(debug=True)
+'''
