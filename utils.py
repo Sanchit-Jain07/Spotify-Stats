@@ -155,8 +155,8 @@ def get_recommended_artists(sp, id):
     for artist in artists['artists'][:5]:
         if  ('images' in artist and artist['images']):
                 image = artist['album']['images'][0]['url']
-            else:
-                image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
+        else:
+            image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
         temp = {
                 'name': artist['name'], 
                 'followers': artist['followers']['total'], 
