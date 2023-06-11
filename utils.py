@@ -19,9 +19,9 @@ def get_all_top_tracks(sp):
 
         for item in (results['items']):
             data['uri'].append(item['uri'])
-            if  ('images' in item.keys()) and item['images']:
+            try:
                 image = item['album']['images'][0]['url']
-            else:
+            except:
                 image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
             song = {
                     'name': item['name'], 
@@ -69,9 +69,9 @@ def get_all_top_artists(sp):
             break
 
         for item in results['items']:
-            if  ('images' in item.keys()) and item['images']:
+            try:
                 image = item['images'][0]['url']
-            else:
+            except:
                 image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
             artist = {
                     'name': item['name'], 
@@ -153,9 +153,9 @@ def get_recommended_artists(sp, id):
     artists = sp.artist_related_artists(id)
     data = []
     for artist in artists['artists'][:5]:
-        if  ('images' in artist.keys()) and artist['images']:
-                image = artist['images'][0]['url']
-        else:
+        try:
+            image = artist['images'][0]['url']
+        except:
             image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
         temp = {
                 'name': artist['name'], 
@@ -185,9 +185,9 @@ def get_recommendations(sp, artists, songs, genre, audio_features):
 
     for item in data['tracks']:
         artists = [j['name'] for j in item['artists']]
-        if  ('images' in item.keys()) and item['images']:
-                image = item['album']['images'][0]['url']
-        else:
+        try:
+            image = item['album']['images'][0]['url']
+        except:
             image = 'https://cdn-icons-png.flaticon.com/512/26/26805.png'
         song_list.append({
             'name': item['name'],
